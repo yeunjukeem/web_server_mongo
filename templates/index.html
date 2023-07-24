@@ -7,7 +7,10 @@
 </head>
 <body>
     <h1>Welcome my Homepage!</h1>
-
+    {% if session['is_logged'] %}
+<h2>{{ session['username'] }} 님 반갑습니다. </h2>
+<button><a href="/logout">로그아웃</a></button>
+{% endif %}
     <div>
         {{contents}}
     </div>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{
+            border-collapse: collapse;
+        }
+        table th, td { border:1px solid lightblue; }
+    </style>
+</head>
+<body>
+    <h1>게시판</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>title</th>
+                <th>내용</th>
+                <th>글쓴이</th>
+                <th>시간</th>
+                <th>기타</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>id</th>
+                <th>title</th>
+                <th>내용</th>
+                <th>글쓴이</th>
+                <th>시간</th>
+                <th>기타</th>
+            </tr>
+
+        </tfoot>
+        <tbody>
+            {% for x in data %}
+            <tr>
+                <td> {{x['_id']}}  </td>
+                <td> {{x['title']}}  </td>
+                <td> {{x['desc']}}  </td>
+                <td> {{x['author']}}  </td>
+                <td> {{x['create_at']}}  </td>
+                <td> edit, del   </td>
+                
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+</body>
+</html>
