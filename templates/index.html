@@ -4,15 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        a{
+            text-decoration: none;
+        }
+#logout{
+    color:red;
+}
+    </style>
 </head>
 <body>
     <h1>Welcome my Homepage!</h1>
+    <button><a href="/login">로그인</a></button>
     {% if session['is_logged'] %}
 <h2>{{ session['username'] }} 님 반갑습니다. </h2>
-<button><a href="/logout">로그아웃</a></button>
+<button><a href="/list">리스트</a></button>
+<button><a href="/create_at">글쓰기</a></button>
+<button><a href="/logout" id="logout">로그아웃</a></button>
 {% endif %}
     <div>
-        {{contents}}
+        
     </div>
 </body>
 </html>

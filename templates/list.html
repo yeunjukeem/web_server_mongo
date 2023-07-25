@@ -9,6 +9,14 @@
             border-collapse: collapse;
         }
         table th, td { border:1px solid lightblue; }
+      
+      a{
+          text-decoration: none;
+      }
+#logout{
+  color:red;
+}
+  
     </style>
 </head>
 <body>
@@ -44,12 +52,29 @@
                 <td> {{x['desc']}}  </td>
                 <td> {{x['author']}}  </td>
                 <td> {{x['create_at']}}  </td>
-                <td> edit, del   </td>
+                <td> 
+                    <a href="/edit/{{x['_id']}}"><button>편집</button></a>  
+                    <a href="/del/{{x['_id']}}" onclick="return confirm"><button>삭제</button></a>  
+                </td>
                 
             </tr>
             {% endfor %}
         </tbody>
 
     </table>
+    
+      <button><a href="/">메인</a></button>
+      <button><a href="/create_at">글쓰기</a></button>
+      <button><a href="/logout" id="logout">로그아웃</a></button>
+     
+     <script>
+        timeData = document.getElementById('time').innerHTML
+        console.log(timeData)
+        // 작성일 : 2022년 5월 19일 목요일 19시 4분 10초 1밀리초
+        let date = new Date(timeData);
+        console.log(date.getFullYear())
+        textDate = `${date.getFullYear()}년 ${date.getMonth()}월 ${date.getDay()}일`
+        document.getElementById('time').innerHTML = textDate
+      </script>
 </body>
 </html>

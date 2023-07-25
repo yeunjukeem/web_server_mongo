@@ -1,10 +1,12 @@
 # app.py_web_server_mongo
 
-from flask import Flask, render_template, request, redirect, session
+from flask import Flask, render_template, request, redirect, session,jsonify
 from data import Articles
 from models import MyMongo
 from config import MONGODB_URL
 from functools import wraps
+from bson.json_util import dumps
+from bson.objectid import ObjectId
 
 app = Flask(__name__)
 app.secret_key = "a"
@@ -106,6 +108,28 @@ def create_at():
         return redirect('/list')   
     elif request.method == 'GET':
         return render_template('dashboard.html')
+    
+@app.route('/del/<ids>')
+def delete(ids):
+    mymongo.del_data(ids)
+    return redirect('/list')
+
+
+@app.route('/edit/<ids>', methods=['GET','POST'])    
+def edit_list(ids):
+    if request.method == 'GET':
+        data = mymongo.find_one_data(ids)
+        # print(data)
+        # return "success"
+        return render_template('edit.html', data=data)
+    elif request.method == 'POST':
+        title = request.form['title']
+        desc = request.form['desc']
+        mymongo.update_data(ids, title, desc)
+        return redirect('/list')
+
+
+
 
 if __name__== "__main__":
     app.run(debug=True, port=9999)

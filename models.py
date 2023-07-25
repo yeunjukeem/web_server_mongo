@@ -73,6 +73,12 @@ class MyMongo:
         print(list)
         return list
     
+    def find_one_data(self, ids):
+        db = self.client.os
+        lists = db.lists
+        data = lists.find_one({'_id':ObjectId(ids)})
+        return data
+    
     def insert_data(self, title, desc, author):
         db = self.client.os
         lists = db.lists 
@@ -87,6 +93,17 @@ class MyMongo:
         return data
 
 
+    def del_data(self, id):
+        db = self.client.os
+        lists = db.lists 
+        list = lists.delete_one({'_id': ObjectId(id)})
+        return "1"
+
+    def update_data(self, id, title, desc):
+        db = self.client.os
+        list = db.lists 
+        list = list.update_one({'_id': ObjectId(id)}, {"$set":{"title": title, "desc":desc}})
+        return "1"
     
 
 
